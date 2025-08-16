@@ -5,11 +5,7 @@ use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 
-if ($_SERVER['REQUEST_URI'] === '/api/data') {
-    header('Content-Type: application/json');
-    echo json_encode(['message' => 'Hello from PHP!', 'time' => date('H:i:s')]);
-    exit;
-}
+
 
 $app = AppFactory::create();
 $app->addErrorMiddleware(true, true, true);
@@ -21,132 +17,100 @@ $app->get('/', function ($request, $response, $args) {
     $view = Twig::fromRequest($request);
     
     $seo = [
-        'title' => 'Parth Sinha - Full Stack Engineer',
-        'description' => 'Detail-oriented Full Stack Engineer dedicated to building high-quality products. Specializing in modern web technologies and scalable solutions.',
-        'keywords' => 'Full Stack Engineer, Web Developer, PHP, JavaScript, React, Node.js, Software Engineer',
-        'author' => 'Parth Sinha',
+        'title' => 'Shine Gupta - Data Scientist',
+        'description' => 'Data Scientist and Machine Learning Engineer specializing in AI, deep learning, and NLP. I enhance software with prompt engineering and fine-tuning, build AI-powered solutions, and optimize data extraction processes. My portfolio features projects in chronic disease monitoring and cybercrime prediction, showcasing skills in Python, LLMs, RAG, and MLOps.',
+        'keywords' => 'Data Scientist, Machine Learning Engineer, AI, Deep learning, NLP, LLMs, RAG, MLOps, Python, C++, SQL, React, Next.js, FastAPI, Docker, Prompt Engineering',
+        'author' => 'Shine Gupta',
         'url' => 'https://cv.parthsinha.com',
         'image' => 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/profile.webp',
         'type' => 'profile',
         'locale' => 'en_US',
-        'site_name' => 'Parth Sinha Portfolio'
+        'site_name' => 'Shine Gupta\'s Resume'
     ];
     
     $workExperience = [
         [
-            'company' => 'Motion',
-            'url' => 'https://motionapp.com/',
-            'position' => 'Senior Software Engineer',
-            'period' => '2025 - Present',
-            'description' => 'Working on internal AI agents platform allowing marketing specialists to create AI workflows.',
-            'tags' => ['Remote', 'AI', 'React', 'Next.js', 'TypeScript', 'AdonisJS']
-        ],
-        [
-            'company' => 'Film.io',
-            'url' => 'https://film.io',
-            'position' => 'Software Architect',
-            'period' => '2024 - 2025',
-            'description' => 'Leading technical architecture of a blockchain-based film funding platform.',
+            'company' => 'Turing',
+            'url' => 'https://turing.com/',
+            'position' => 'Data Scientist',
+            'period' => 'Oct 2023 - Present',
+            'description' => 'Data Scientist at a tech company specializing in AI talent solutions and LLM-driven software development.',
             'details' => [
-                'Architecting migration from CRA to Next.js for improved performance, SEO, and DX',
-                'Established release process enabling faster deployments and reliable rollbacks',
-                'Implementing system-wide monitoring and security improvements'
+                'Enhanced LLM-driven software performance, increasing multi-turn conversation quality by 35% using prompt engineering and response tuning. Built internal dev tools using Python, Postgres, and Neo4j for scalable evaluations and experimentation',
             ],
-            'tags' => ['Remote', 'React', 'Next.js', 'TypeScript', 'Node.js']
+            'tags' => ['Transformers', 'FastAPI', 'PostgreSQL', 'Git', 'Docker', 'JavaScript']
         ],
         [
-            'company' => 'Parabol',
-            'url' => 'https://parabol.co',
-            'position' => 'Senior Full Stack Developer',
-            'period' => '2021 - 2024',
-            'description' => 'Senior developer and squad leader for an enterprise agile meeting platform.',
+            'company' => 'DRDO',
+            'url' => 'https://www.drdo.gov.in/',
+            'position' => 'Research Trainee',
+            'period' => 'Jan 2025 - May 2025',
+            'description' => 'Research Trainee at India\'s premier defense research organization working on AI and knowledge management systems.',
             'details' => [
-                'Built design system with Tailwind CSS, improving development speed and time to market',
-                'Implemented engineering practices: PR automation, code review guidelines, and workflows',
-                'Open source contributions to Relay DevTools and React i18n tooling'
+                'Leveraged web scraping to extract and process 50,000+ data points from the DRDO website creating a comprehensive knowledge based for the AI customer support agent.',
+                'Built an AI knowledge assistant with RAG pipelines (LangChain + LLMs) and automated DRDO content processing',
+                'Deployed via Docker, integrated APIs, and implemented full logging/debug layers with Git and Bash'
             ],
-            'tags' => ['Remote', 'React', 'TypeScript', 'Node.js', 'GraphQL', 'Tailwind CSS']
+            'tags' => ['Python', 'LangChain', 'RAG', 'Docker', 'LLMs', 'Web Scraping']
         ],
         [
-            'company' => 'Clevertech',
-            'url' => 'https://clevertech.biz',
-            'position' => 'Lead Android Developer → Full Stack Developer',
-            'period' => '2015 - 2021',
-            'description' => 'Successfully transitioned from mobile to full-stack development while leading distributed teams.',
+            'company' => 'Business Quant',
+            'url' => '#',
+            'position' => 'Machine Learning Engineer',
+            'period' => 'Jun 2023 - Sept 2024',
+            'description' => 'Machine Learning Engineer at a financial technology company focused on automated data extraction and NLP solutions.',
             'details' => [
-                'Led frontend team at Evercast, building real-time platform supporting 30+ users per room with HD streaming and collaboration tools',
-                'Developed offline-first Android app for DKMS, improving donor registration process',
-                'Led development teams across multiple successful client projects'
+                'Improved PaddleOCR extraction precision by 20% by fine-tuning models on currency-specific datasets created using NLTK and openAI.',
+                'Applied custom NLP parsing algorithms on financial reports to automate metrics extraction, cutting time by 30%'
             ],
-            'tags' => ['Remote', 'React', 'TypeScript', 'Node.js', 'Android', 'Kotlin']
-        ],
-        [
-            'company' => 'Jojo Mobile',
-            'url' => 'https://bsgroup.eu/',
-            'position' => 'Android Developer → Lead Android Developer',
-            'period' => '2012 - 2015',
-            'description' => 'First Android developer, grew and led a team of 15+ engineers while establishing engineering culture.',
-            'details' => [
-                'Developed apps for major Polish companies including LOT, Polskie Radio, and Agora',
-                'Built and mentored high-performing mobile development team'
-            ],
-            'tags' => ['On Site', 'Android', 'Java', 'Kotlin']
-        ],
-        [
-            'company' => 'Nokia Siemens Networks',
-            'url' => 'https://www.nokia.com',
-            'position' => 'C/C++ Developer',
-            'period' => '2010 - 2012',
-            'description' => 'Developed software for LTE base stations at enterprise scale, gaining strong fundamentals in software architecture, testing practices, and cross-team collaboration.',
-            'tags' => ['On Site', 'C/C++', 'LTE', 'Agile']
+            'tags' => ['Python', 'PaddleOCR', 'NLTK', 'NLP', 'Machine Learning']
         ]
     ];
     
     $skills = [
-        'React/Next.js/Remix', 'TypeScript', 'Tailwind CSS', 'Design Systems', 
-        'WebRTC', 'WebSockets', 'Node.js', 'GraphQL', 'Relay', 
-        'System Architecture', 'Remote Team Leadership'
+        'Python', 'C/C++', 'MySQL', 'PostgreSQL', 'JavaScript', 
+        'React', 'Next.js', 'Node.js', 'Flask', 'FastAPI',
+        'scikit-learn', 'PyTorch', 'TensorFlow', 'Transformers', 'XGBoost', 
+        'LLMs', 'RAG', 'MLOps', 'AI Agents', 'Git', 'Docker', 'Kubernetes'
     ];
     
     $sideProjects = [
         [
-            'name' => 'Monito',
-            'url' => 'https://monito.dev/',
-            'description' => 'Browser extension for debugging web applications. Includes taking screenshots, screen recording, E2E tests generation and generating bug reports',
-            'technologies' => ['TypeScript', 'Next.js', 'Browser Extension', 'PostgreSQL'],
+            'name' => 'CareMate',
+            'url' => 'https://github.com/Shine-5705/CareMate',
+            'description' => 'AI-Powered Chronic Disease Monitoring & Remote Care system using health sensors + LLMs to generate personalized health insights',
+            'technologies' => ['OpenCV', 'Raspberry Pi', 'Arduino', 'TTS APIs', 'LLMs', 'Transformers'],
             'active' => true
         ],
         [
-            'name' => 'Consultly',
-            'url' => 'https://consultly.com/',
-            'description' => 'Platform for online consultations with real-time video meetings and scheduling',
-            'technologies' => ['TypeScript', 'Next.js', 'Vite', 'GraphQL', 'WebRTC', 'Tailwind CSS', 'PostgreSQL', 'Redis'],
-            'active' => true
-        ],
-        [
-            'name' => 'Minimalist CV',
-            'url' => 'https://github.com/BartoszJarocki/cv',
-            'description' => 'An open source minimalist, print friendly CV template with a focus on readability and clean design. >9k stars on GitHub',
-            'technologies' => ['TypeScript', 'Next.js', 'Tailwind CSS'],
+            'name' => 'CyberRakshak',
+            'url' => 'https://github.com/Shine-5705/CyberRakshak',
+            'description' => 'AI-based Cybercrime Prediction System with 82% accuracy, integrating real-time risk scoring. Winner of Innotech 2023 Award',
+            'technologies' => ['Machine Learning', 'Deep Learning', 'TensorFlow', 'Keras', 'Flask', 'Flutter', 'Firebase', 'Python'],
             'active' => true
         ]
     ];
     
     $education = [
         [
-            'institution' => 'Wrocław University of Technology',
-            'period' => '2007 - 2010',
-            'degree' => 'Bachelor\'s Degree in Control systems engineering and Robotics'
+            'institution' => 'KIET Group of Institutions',
+            'period' => 'November 2022 - June 2026',
+            'degree' => 'Bachelor of Technology in Information Technology (GPA: 9)'
+        ],
+        [
+            'institution' => 'CJ DAV Centenary School (CBSE)',
+            'period' => 'April 2021 - July 2022',
+            'degree' => 'Senior Secondary (95.8%)'
         ]
     ];
     
     $data = [
         'seo' => $seo,
         'profile' => [
-            'name' => 'Parth Sinha',
-            'description' => 'Detail-oriented Full Stack Engineer dedicated to building high-quality products.',
-            'location' => 'Oxford, United Kingdom',
-            'about' => 'Frontend-focused Full Stack Engineer specializing in high-performance React applications, scalable Node.js services, and real-time collaboration systems. Experienced in technical architecture design and remote team leadership.'
+            'name' => 'Shine Gupta',
+            'description' => 'Data Scientist and Machine Learning Engineer specializing in AI, deep learning, and NLP.',
+            'location' => 'Ghaziabad, Uttar Pradesh, India',
+            'about' => 'Data Scientist and Machine Learning Engineer specializing in AI, deep learning, and NLP. I enhance software with prompt engineering and fine-tuning, build AI-powered solutions, and optimize data extraction processes.'
         ],
         'workExperience' => $workExperience,
         'skills' => $skills,
